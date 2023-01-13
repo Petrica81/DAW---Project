@@ -34,5 +34,4 @@
     - Upload fisiere pe S3 (AWS) sau Storage Account (Azure) (1pct)❌
     - Auth cu refresh token (1 pct)❌
     - Folosire 3 metode care nu au fost folosite la laborator din rxjs (1 pct) ❌
-    ![image](https://user-images.githubusercontent.com/95485582/212394796-19d6a89a-188c-4f3c-995b-6e616395e183.png)
 
