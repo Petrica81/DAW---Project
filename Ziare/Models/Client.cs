@@ -8,6 +8,8 @@ namespace Ziare.Models
         public string Prenume { get; set; }
         public string Email { get; set; }
         public int Varsta { get; set; }
-        public int Balance { get; set; }
+        public int Bani { get; set; }
+        public Biblioteca? Biblioteca { get; set; }
+        public Guid? BibliotecaId { get; set; }
     }
 }

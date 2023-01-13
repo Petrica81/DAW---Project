@@ -129,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "Ziare"
+  "defaultProject": "Ziare",
+  "cli": {
+    "analytics": "09117d9c-2045-4c55-aec9-2d1e5d2016af"
+  }
 }

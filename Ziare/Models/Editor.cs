@@ -9,5 +9,6 @@ namespace Ziare.Models
         public string Editura { get; set; }
         public string Email { get; set; }
         public int Varsta { get; set; }
+        public ICollection<ZiarEditorRelation> ZiarEditorRelations { get; set; }
     }
 }

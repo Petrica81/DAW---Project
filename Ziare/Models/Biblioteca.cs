@@ -4,6 +4,8 @@ namespace Ziare.Models
 {
     public class Biblioteca : BaseEntity
     {
-        public int NumarZiare { get; set; }
+        public string Denumire { get; set; }
+        public ICollection<ZiarBibliotecaRelation> ZiarBibliotecaRelations { get; set; }
+        public Client Client { get; set; }
     }
 }

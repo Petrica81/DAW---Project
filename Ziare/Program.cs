@@ -1,9 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using Ziare.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
-
+builder.Services.AddControllers();
+builder.Services.AddDbContext<ZiarContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
