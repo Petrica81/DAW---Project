@@ -1,11 +1,11 @@
-BAza mea de date ar avea 5 tabele: Client, Biblioteca, Ziar, ARticol, Editor
+BAza mea de date ar avea 5 tabele in diagrama E/R: Client, Biblioteca, Ziar, ARticol, Editor
 
  Legaturi:
- Client - Biblioteca 1(0)- 1(0)
+ Client - Biblioteca 1- 1(0)
  Biblioteca - Ziar M(0)- M(0)
- Ziar - Articol 1 - M(1)
+ Ziar - Articol 1 - M(0)
  Ziar - Editor M(1) - M(0)
  
  
- Roluri: Client, Editor, Admin
+ Roluri: Client, Admin
  

@@ -3,20 +3,19 @@
   Ce vreau sa realizez in proiect.
   
   -Plan de functionare(sau ceva asemanator, este doar o idee):
-    Un client isi face cont, el poate sa acceseze  ziarele gratuite fara probleme, dar pentru celelalte trebuie sa isi creeze o "biblioteca" si 
-   sa detina destui bani , dupa ce se cumpara un ziar, acesta se adauga in biblioteca. Ziarele gratuite pot fi si ele adaugate in biblioteca dar 
-   nu este absolut necesar precum la celelalte.
+    Un client isi face cont, trebuie sa isi creeze o "biblioteca" si 
+   sa detina destui bani , dupa ce se cumpara un ziar, acesta se adauga in biblioteca
     Un editor poate modifica un ziar al carui editura coincide cu editura la care lucreaza editorul. Acesta nu prezinta o biblioteca si nu poate 
    interactiona cu celelalte tipuri de ziare.
     Un ziar este format din articole mai micute(acestea ar contine textul din ziar)
     
    -Checkpointuri pentru cerinte:
    Backend (4p) :
-     -3 Controllere  Fiecare Metoda Crud, REST cu date din baza de date. (1p)❌
+     -3 Controllere  Fiecare Metoda Crud✔️, REST cu date din baza de date. (1p)❌
      -Cel puțin 1 relație între tabele din fiecare fel (One to One, Many to Many, One to Many)✔️; 
           Folosirea metodelor din Linq: GroupBy, Where, etc; Folosirea Join si Include (1p)❌
-     -Autentificare + Roluri; Autorizare pe endpointuri în funcție de Roluri; Cel putin 2 Roluri: Admin, User (1p)❌
-     -Sa se foloseasca repository pattern + Service (1p)❌
+     -Autentificare + Roluri; Autorizare pe endpointuri în funcție de Roluri; Cel putin 2 Roluri: Admin, User (1p)✔️
+     -Sa se foloseasca repository pattern + Service (1p)✔️
 
    Frontend(4p):
      - Cel putin 3 componente. Existenta rutelor(simple + parametru). (1 p)❌
