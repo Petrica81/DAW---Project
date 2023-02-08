@@ -23,6 +23,28 @@ namespace Ziare.Controllers
         {
             return _articolService.GetAll();
         }
+        [HttpPost("add")]
+        public async Task<ActionResult<ArticolResponseDTO>> AddArticol(ArticolRequestDTO articol)
+        {
+            var articol2 = new Articol
+            {
+                Titlu = articol.Titlu
+            };
+
+            await _articolService.Create(articol2);
+            return Ok(new ArticolResponseDTO(articol2));
+        }
+
+        [HttpPut("edit/{id}")]
+        public async Task<ActionResult> UpdateArticol(Guid id, [FromBody] ArticolResponseDTO articol)
+        {
+            var verif = await _articolService.Update(id, articol);
+            if (verif != null)
+            {
+                return BadRequest();
+            }
+            return Ok();
+        }
 
         [HttpDelete("delete/{id}")]
         public async Task<ActionResult> DeleteArticol(Guid id)

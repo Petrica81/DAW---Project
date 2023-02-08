@@ -11,6 +11,5 @@ namespace Ziare.Models
         public string Editura { get; set; } = default!;
         public string Email { get; set; } = default!;
         public int Varsta { get; set; } = default!;
-        public List<ZiarEditorRelation> ZiarEditorRelations { get; set; } = new List<ZiarEditorRelation>();
     }
 }

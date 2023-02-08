@@ -12,7 +12,6 @@ namespace Ziare.Data
         public DbSet<Articol> Articole { get; set; }
         public DbSet<Biblioteca> Biblioteci { get; set; }
         public DbSet<ZiarBibliotecaRelation> ZiarBibliotecaRelations { get; set; }
-        public DbSet<ZiarEditorRelation> ZiarEditorRelations { get; set; }
         public ZiarContext(DbContextOptions<ZiarContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -21,18 +20,6 @@ namespace Ziare.Data
             modelBuilder.Entity<Ziar>()
                 .HasMany(z => z.Articole)
                 .WithOne(a => a.Ziar);
-
-            //many to many
-            modelBuilder.Entity<ZiarEditorRelation>()
-                .HasKey(zer => new { zer.ZiarId, zer.EditorId });
-            modelBuilder.Entity<ZiarEditorRelation>()
-                .HasOne<Ziar>(zer => zer.Ziar)
-                .WithMany(z => z.ZiarEditorRelations)
-                .HasForeignKey(zer => zer.ZiarId);
-            modelBuilder.Entity<ZiarEditorRelation>()
-                .HasOne<Editor>(zer => zer.Editor)
-                .WithMany(e => e.ZiarEditorRelations)
-                .HasForeignKey(zer => zer.EditorId);
 
             //many to many
             modelBuilder.Entity<ZiarBibliotecaRelation>()

@@ -3,14 +3,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace DAL.Migrations
+namespace Ziare.Migrations
 {
     /// <inheritdoc />
-    public partial class modificroles : Migration
+    public partial class mergi : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ZiarEditorRelations");
+
             migrationBuilder.DropColumn(
                 name: "PasswordHash",
                 table: "Editori");
@@ -238,6 +241,35 @@ namespace DAL.Migrations
                 nullable: true,
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2");
+
+            migrationBuilder.CreateTable(
+                name: "ZiarEditorRelations",
+                columns: table => new
+                {
+                    ZiarId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    EditorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ZiarEditorRelations", x => new { x.ZiarId, x.EditorId });
+                    table.ForeignKey(
+                        name: "FK_ZiarEditorRelations_Editori_EditorId",
+                        column: x => x.EditorId,
+                        principalTable: "Editori",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ZiarEditorRelations_Ziare_ZiarId",
+                        column: x => x.ZiarId,
+                        principalTable: "Ziare",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ZiarEditorRelations_EditorId",
+                table: "ZiarEditorRelations",
+                column: "EditorId");
         }
     }
 }

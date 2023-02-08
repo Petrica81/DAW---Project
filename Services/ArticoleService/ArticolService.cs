@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Ziare.Models;
+using Ziare.Models.DTOs.ArticolDTOs;
 using Ziare.Repositories;
 
 namespace Ziare.Services.ArticoleService
@@ -26,7 +27,10 @@ namespace Ziare.Services.ArticoleService
             await _unitOfWork.ArticoleRepository.CreateAsync(newArticol);
             await _unitOfWork.SaveAsync();
         }
-
+        public async Task<bool> Update(Guid id, ArticolResponseDTO newArticol)
+        {
+            return true;
+        }
         public async Task Delete(Guid id)
         {
             var articol = await _unitOfWork.ArticoleRepository.FindByIdAsync(id);

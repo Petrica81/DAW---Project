@@ -13,12 +13,10 @@ namespace Ziare.Controllers
     public class ZiarController : ControllerBase
     {
         private IZiarService _ziarService;
-        private IArticolService _articolService;
 
-        public ZiarController(IZiarService ziarService, IArticolService articolService)
+        public ZiarController(IZiarService ziarService)
         {
             _ziarService = ziarService;
-            _articolService = articolService;
         }
 
         //endpoint pentru a lista toate ziarele
@@ -42,23 +40,6 @@ namespace Ziare.Controllers
             await _ziarService.Create(ziar2);
 
             return Ok(new ZiarResultsDTO(ziar2));
-        }
-
-        //endpoint pentru a 
-        [HttpPost("addArticolToZiar/{id}")]
-        public async Task<ActionResult<ArticolResponseDTO>> AddArticolToZiar(Guid id, ArticolRequestDTO articol)
-        {
-            var verif = await _ziarService.TestareZiarId(id);
-            if (!verif) { return BadRequest(); }
-            var articol2 = new Articol
-            {
-                Titlu = articol.Titlu,
-                ZiarId = id,
-                Ziar = await _ziarService.GetById(id),
-            };
-            await _articolService.Create(articol2);
-
-            return Ok(new ArticolResponseDTO(articol2));
         }
 
         [HttpPut("edit/{id}")]

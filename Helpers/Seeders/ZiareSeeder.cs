@@ -7,7 +7,7 @@ namespace Ziare.Helpers.Seeders
 {
     public class ZiareSeeder
     {
-        public readonly ZiarContext _ziarContext;
+        public ZiarContext _ziarContext;
 
         public ZiareSeeder(ZiarContext ziarContext)
         {

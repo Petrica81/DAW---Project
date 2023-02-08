@@ -9,11 +9,11 @@ using Ziare.Data;
 
 #nullable disable
 
-namespace DAL.Migrations
+namespace Ziare.Migrations
 {
     [DbContext(typeof(ZiarContext))]
-    [Migration("20230123223403_decenuvrea")]
-    partial class decenuvrea
+    [Migration("20230206105244_mergi")]
+    partial class mergi
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,10 +34,10 @@ namespace DAL.Migrations
                     b.Property<string>("Autor")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("DateCreated")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Text")
@@ -64,10 +64,10 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("DateCreated")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Denumire")
@@ -91,51 +91,11 @@ namespace DAL.Migrations
                     b.Property<Guid?>("BibliotecaId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("DateCreated")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nume")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Prenume")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Varsta")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BibliotecaId")
-                        .IsUnique()
-                        .HasFilter("[BibliotecaId] IS NOT NULL");
-
-                    b.ToTable("Clients");
-                });
-
-            modelBuilder.Entity("Ziare.Models.Editor", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Editura")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -161,6 +121,46 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BibliotecaId")
+                        .IsUnique()
+                        .HasFilter("[BibliotecaId] IS NOT NULL");
+
+                    b.ToTable("Clients");
+                });
+
+            modelBuilder.Entity("Ziare.Models.Editor", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Editura")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nume")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Prenume")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Varsta")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
                     b.ToTable("Editori");
                 });
 
@@ -170,10 +170,10 @@ namespace DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("DateCreated")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateModified")
+                    b.Property<DateTime>("DateModified")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Domeniu")
@@ -209,21 +209,6 @@ namespace DAL.Migrations
                     b.HasIndex("BibliotecaId");
 
                     b.ToTable("ZiarBibliotecaRelations");
-                });
-
-            modelBuilder.Entity("Ziare.Models.ZiarEditorRelation", b =>
-                {
-                    b.Property<Guid>("ZiarId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("EditorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ZiarId", "EditorId");
-
-                    b.HasIndex("EditorId");
-
-                    b.ToTable("ZiarEditorRelations");
                 });
 
             modelBuilder.Entity("Ziare.Models.Articol", b =>
@@ -265,25 +250,6 @@ namespace DAL.Migrations
                     b.Navigation("Ziar");
                 });
 
-            modelBuilder.Entity("Ziare.Models.ZiarEditorRelation", b =>
-                {
-                    b.HasOne("Ziare.Models.Editor", "Editor")
-                        .WithMany("ZiarEditorRelations")
-                        .HasForeignKey("EditorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Ziare.Models.Ziar", "Ziar")
-                        .WithMany("ZiarEditorRelations")
-                        .HasForeignKey("ZiarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Editor");
-
-                    b.Navigation("Ziar");
-                });
-
             modelBuilder.Entity("Ziare.Models.Biblioteca", b =>
                 {
                     b.Navigation("Client")
@@ -292,18 +258,11 @@ namespace DAL.Migrations
                     b.Navigation("ZiarBibliotecaRelations");
                 });
 
-            modelBuilder.Entity("Ziare.Models.Editor", b =>
-                {
-                    b.Navigation("ZiarEditorRelations");
-                });
-
             modelBuilder.Entity("Ziare.Models.Ziar", b =>
                 {
                     b.Navigation("Articole");
 
                     b.Navigation("ZiarBibliotecaRelations");
-
-                    b.Navigation("ZiarEditorRelations");
                 });
 #pragma warning restore 612, 618
         }

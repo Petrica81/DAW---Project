@@ -208,21 +208,6 @@ namespace DAL.Migrations
                     b.ToTable("ZiarBibliotecaRelations");
                 });
 
-            modelBuilder.Entity("Ziare.Models.ZiarEditorRelation", b =>
-                {
-                    b.Property<Guid>("ZiarId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("EditorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ZiarId", "EditorId");
-
-                    b.HasIndex("EditorId");
-
-                    b.ToTable("ZiarEditorRelations");
-                });
-
             modelBuilder.Entity("Ziare.Models.Articol", b =>
                 {
                     b.HasOne("Ziare.Models.Ziar", "Ziar")
@@ -262,25 +247,6 @@ namespace DAL.Migrations
                     b.Navigation("Ziar");
                 });
 
-            modelBuilder.Entity("Ziare.Models.ZiarEditorRelation", b =>
-                {
-                    b.HasOne("Ziare.Models.Editor", "Editor")
-                        .WithMany("ZiarEditorRelations")
-                        .HasForeignKey("EditorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Ziare.Models.Ziar", "Ziar")
-                        .WithMany("ZiarEditorRelations")
-                        .HasForeignKey("ZiarId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Editor");
-
-                    b.Navigation("Ziar");
-                });
-
             modelBuilder.Entity("Ziare.Models.Biblioteca", b =>
                 {
                     b.Navigation("Client")
@@ -289,18 +255,11 @@ namespace DAL.Migrations
                     b.Navigation("ZiarBibliotecaRelations");
                 });
 
-            modelBuilder.Entity("Ziare.Models.Editor", b =>
-                {
-                    b.Navigation("ZiarEditorRelations");
-                });
-
             modelBuilder.Entity("Ziare.Models.Ziar", b =>
                 {
                     b.Navigation("Articole");
 
                     b.Navigation("ZiarBibliotecaRelations");
-
-                    b.Navigation("ZiarEditorRelations");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,9 +6,10 @@ namespace Ziare.Services.ClientiService
 {
     public interface IClientService
     {
-        ClientResponseDTO Authenticate(ClientRequestDTO _client);
+        Task<ClientResponseDTO> AuthenticateAsync(ClientAuthRequestDTO _client);
         Task<List<Client>> GetAll();
         Task Create(Client newClient);
+        Task<Client> CreateAsync(ClientRequestDTO client);
         //Task<bool> Update(Guid id, ClientResultsDTO client);
         Task Delete(Guid id);
     }

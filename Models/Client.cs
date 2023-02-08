@@ -1,6 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 using Ziare.Models.Base;
+using Ziare.Models.DTOs.ClientDTOs;
 using Ziare.Models.Enums;
+using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace Ziare.Models
 {
@@ -17,5 +19,14 @@ namespace Ziare.Models
         [JsonIgnore]
         public string PasswordHash { get; set; } = default!;
         public Roles Role { get; set; } = default!;
+
+        public Client() { }
+        public Client(ClientRequestDTO client)
+        {
+            Email = client.Email;
+            PasswordHash = BCryptNet.HashPassword(client.Password);
+            Nume = client.Nume;
+            Prenume = client.Prenume;
+        }
     }
 }

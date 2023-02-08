@@ -26,9 +26,9 @@ namespace Ziare.Services.ClientiService
             var clienti = await _unitOfWork.ClientiRepository.GetAll();
             return _mapper.Map<List<Client>>(clienti);
         }
-        public ClientResponseDTO Authenticate(ClientRequestDTO _client)
+        public async Task<ClientResponseDTO> AuthenticateAsync(ClientAuthRequestDTO _client)
         {
-            var client = _unitOfWork.ClientiRepository.FindByEmail(_client.Email);
+            var client = await _unitOfWork.ClientiRepository.FindByEmailAsync(_client.Email);
             if (client == null || !BCryptNet.Verify(_client.Password, client.PasswordHash))
             {
                 return null;
@@ -41,6 +41,20 @@ namespace Ziare.Services.ClientiService
         {
             await _unitOfWork.ClientiRepository.CreateAsync(newClient);
             await _unitOfWork.ClientiRepository.SaveAsync();
+        }
+        public async Task<Client> CreateAsync(ClientRequestDTO client)
+        {
+            var newClient= new Client(client);
+            await _unitOfWork.ClientiRepository.CreateAsync(newClient);
+            try
+            {
+                await _unitOfWork.SaveAsync();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            return newClient;
         }
 
         public async Task Delete(Guid id)

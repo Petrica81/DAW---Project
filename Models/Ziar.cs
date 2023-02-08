@@ -9,7 +9,6 @@ namespace Ziare.Models
         public string Domeniu { get; set; } = default!;
         public int Pret { get; set; } = default!;
         public List<Articol> Articole { get; set; } = new List<Articol>();
-        public List<ZiarEditorRelation> ZiarEditorRelations { get; set; } = new List<ZiarEditorRelation>();
         public List<ZiarBibliotecaRelation> ZiarBibliotecaRelations { get; set; } = new List<ZiarBibliotecaRelation>();
     }
 }

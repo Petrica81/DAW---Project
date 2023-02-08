@@ -1,4 +1,5 @@
-﻿using Ziare.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Ziare.Data;
 using Ziare.Models;
 using Ziare.Repositories.GenericRepository;
 
@@ -8,9 +9,9 @@ namespace Ziare.Repositories.ClientiRepository
     {
         public ClientiRepository(ZiarContext context) : base(context) { }
 
-        public Client FindByEmail(string email)
+        public async Task<Client> FindByEmailAsync(string email)
         {
-            return _table.FirstOrDefault(x => x.Email == email);
+            return await _table.FirstOrDefaultAsync(x => x.Email == email);
         }
     }
 }

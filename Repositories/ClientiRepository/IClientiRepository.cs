@@ -5,6 +5,6 @@ namespace Ziare.Repositories.ClientiRepository
 {
     public interface IClientiRepository : IGenericRepository<Client>
     {
-        Client FindByEmail(string email);
+        Task<Client> FindByEmailAsync(string email);
     }
 }

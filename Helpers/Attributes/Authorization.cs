@@ -21,7 +21,6 @@ namespace Ziare.Helpers.Attributes
             {
                 context.Result = unauthorizedStatusObject;
             }
-
             var client = (Client)context.HttpContext.Items["Client"];
             if (client == null || !_roles.Contains(client.Role))
             {
