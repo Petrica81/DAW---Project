@@ -37,6 +37,6 @@ namespace Ziare.Services.ArticoleService
 
             _unitOfWork.ArticoleRepository.Delete(articol);
             await _unitOfWork.ArticoleRepository.SaveAsync();
-        }
+        }/**/
     }
 }
