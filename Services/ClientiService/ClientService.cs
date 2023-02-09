@@ -26,6 +26,12 @@ namespace Ziare.Services.ClientiService
             var clienti = await _unitOfWork.ClientiRepository.GetAll();
             return _mapper.Map<List<Client>>(clienti);
         }
+
+        public Client GetById(Guid id)
+        {
+            var client =  _unitOfWork.ClientiRepository.FindById(id);
+            return _mapper.Map<Client>(client);
+        }
         public async Task<ClientResponseDTO> AuthenticateAsync(ClientAuthRequestDTO _client)
         {
             var client = await _unitOfWork.ClientiRepository.FindByEmailAsync(_client.Email);

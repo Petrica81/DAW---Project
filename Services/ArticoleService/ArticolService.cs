@@ -29,6 +29,16 @@ namespace Ziare.Services.ArticoleService
         }
         public async Task<bool> Update(Guid id, ArticolResponseDTO newArticol)
         {
+            var articol = await _unitOfWork.ArticoleRepository.FindByIdAsync(id);
+            if(articol == null)
+            {
+                return false;
+            }
+            articol.Titlu = newArticol.Titlu;
+            articol.Autor = newArticol.Autor;
+            articol.Text = newArticol.Text;
+
+            _unitOfWork.SaveAsync();
             return true;
         }
         public async Task Delete(Guid id)
@@ -37,6 +47,6 @@ namespace Ziare.Services.ArticoleService
 
             _unitOfWork.ArticoleRepository.Delete(articol);
             await _unitOfWork.ArticoleRepository.SaveAsync();
-        }/**/
+        }
     }
 }

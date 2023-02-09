@@ -1,4 +1,5 @@
 ﻿using Ziare.Helpers.JwtUtils;
+using Ziare.Services.ClientiService;
 using Ziare.Services.EditoriService;
 
 namespace Ziare.Helpers.MiddleWare
@@ -12,13 +13,13 @@ namespace Ziare.Helpers.MiddleWare
             _nextRequestDelegate = requestDelegate;
         }
 
-        public async Task Invoke(HttpContext httpContext, IEditorService editorService, IJwtUtils jwtUtils)
+        public async Task Invoke(HttpContext httpContext, IClientService clientService, IJwtUtils jwtUtils)
         {
             var token = httpContext.Request.Headers["Authorization"].FirstOrDefault()?.Split("").Last();
-            var userId = jwtUtils.ValidateJwtToken(token);
-            if (userId != Guid.Empty)
+            var clientId = jwtUtils.ValidateJwtToken(token);
+            if (clientId != Guid.Empty)
             {
-                httpContext.Items["Editor"] = editorService.GetById(userId);
+                httpContext.Items["Client"] =  clientService.GetById(clientId);
             }
             await _nextRequestDelegate(httpContext);
         }

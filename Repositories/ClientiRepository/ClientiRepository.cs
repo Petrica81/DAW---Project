@@ -13,5 +13,10 @@ namespace Ziare.Repositories.ClientiRepository
         {
             return await _table.FirstOrDefaultAsync(x => x.Email == email);
         }
+
+        public Client FindById(Guid id)
+        {
+            return  _table.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

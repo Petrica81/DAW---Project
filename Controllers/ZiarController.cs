@@ -20,14 +20,14 @@ namespace Ziare.Controllers
         }
 
         //endpoint pentru a lista toate ziarele
-        [HttpGet("all")]
+        [HttpGet("all"), Authorize(Roles = "Client, Admin")]
         public Task<List<Ziar>> GetZiare()
         {
             return _ziarService.GetAll();
         }
 
         //endpoint pentru a adauga un ziar(fara articole)
-        [HttpPost("add")]
+        [HttpPost("add"), Authorize(Roles = "Admin")]
         public async Task<ActionResult<ZiarResultsDTO>> AddZiar(ZiarRequestDTO ziar)
         {
             var ziar2 = new Ziar
@@ -42,7 +42,7 @@ namespace Ziare.Controllers
             return Ok(new ZiarResultsDTO(ziar2));
         }
 
-        [HttpPut("edit/{id}")]
+        [HttpPut("edit/{id}"), Authorize(Roles = "Admin")]
         public async Task<ActionResult> UpdateZiar(Guid id, [FromBody] ZiarResultsDTO ziar)
         {
             var verif = await _ziarService.Update(id, ziar);
@@ -53,7 +53,7 @@ namespace Ziare.Controllers
             return Ok();
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("delete/{id}"), Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteZiar(Guid id)
         {
             await _ziarService.Delete(id);

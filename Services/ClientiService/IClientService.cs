@@ -8,6 +8,7 @@ namespace Ziare.Services.ClientiService
     {
         Task<ClientResponseDTO> AuthenticateAsync(ClientAuthRequestDTO _client);
         Task<List<Client>> GetAll();
+        Client GetById(Guid id);
         Task Create(Client newClient);
         Task<Client> CreateAsync(ClientRequestDTO client);
         //Task<bool> Update(Guid id, ClientResultsDTO client);

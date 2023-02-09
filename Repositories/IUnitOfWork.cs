@@ -10,7 +10,7 @@ namespace Ziare.Repositories
     public interface IUnitOfWork
     {
         IZiareRepository ZiareRepository { get; }
-        IEditoriRepository ArticolRepository { get; }
+        IEditoriRepository EditoriRepository { get; }
         IClientiRepository ClientiRepository { get; }
         IArticoleRepository ArticoleRepository { get; }
         IBiblioteciRepository BiblioteciRepository { get; }

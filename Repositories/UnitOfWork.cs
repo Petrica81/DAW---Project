@@ -12,7 +12,7 @@ namespace Ziare.Repositories
     public class UnitOfWork : IUnitOfWork
     {
         public IZiareRepository ZiareRepository { get; set; }
-        public IEditoriRepository ArticolRepository { get; set; }
+        public IEditoriRepository EditoriRepository { get; set; }
         public IClientiRepository ClientiRepository { get; set; }
         public IArticoleRepository ArticoleRepository { get; set; }
         public IBiblioteciRepository BiblioteciRepository { get; set; }
@@ -22,7 +22,7 @@ namespace Ziare.Repositories
         public UnitOfWork(IZiareRepository ziareRepository, IEditoriRepository editoriRepository, IArticoleRepository articoleRepository, IBiblioteciRepository biblioteciRepository, IClientiRepository clientiRepository, ZiarContext ziarcontext)
         {
             ZiareRepository = ziareRepository;
-            ArticolRepository = editoriRepository;
+            EditoriRepository = editoriRepository;
             ArticoleRepository = articoleRepository;
             BiblioteciRepository = biblioteciRepository;
             ClientiRepository = clientiRepository;

@@ -16,8 +16,8 @@ namespace Ziare.Helpers.Seeders
 
         public void SeedInitialZiare()
         {
-            /*if (!_ziarContext.Ziare.Any())
-            {*/
+            if (!_ziarContext.Ziare.Any())
+            {            
                 var ziar1 = new Ziar
                 {
                     Titlu = "Noutati despre vedete! 1",
@@ -61,7 +61,7 @@ namespace Ziare.Helpers.Seeders
                 _ziarContext.Ziare.Add(ziar5);
 
                 _ziarContext.SaveChangesAsync();
-            /*}*/
+            }
         }
     }
 }

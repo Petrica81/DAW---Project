@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Ziare.Data;
+using Ziare.Services.BiblioteciService;
 
 namespace Ziare.Controllers
 {
@@ -8,11 +9,11 @@ namespace Ziare.Controllers
     [ApiController]
     public class BibliotecaController : ControllerBase
     {
-        private ZiarContext _ZiarContext;
+        public IBibliotecaService _bibliotecaService;
 
-        public BibliotecaController(ZiarContext ZiarContext)
+        public BibliotecaController(IBibliotecaService bibliotecaService)
         {
-            _ZiarContext = ZiarContext;
+            _bibliotecaService = bibliotecaService;
         }
     }
 }

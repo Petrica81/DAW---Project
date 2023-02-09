@@ -16,25 +16,20 @@ namespace Ziare.Services.EditoriService
             _mapper = mapper;
         }
 
-        public EditorRequestDTO GetById(Guid id)
-        {
-            //!!! trebuie sa implementez, nu UITA!
-            return new EditorRequestDTO { };
-        }
         public async Task<List<Editor>> GetAll()
         {
-            var editori = await _unitOfWork.ArticolRepository.GetAll();
+            var editori = await _unitOfWork.EditoriRepository.GetAll();
             return _mapper.Map<List<Editor>>(editori);
         }
 
         public async Task Create(Editor newEditor)
         {
-            await _unitOfWork.ArticolRepository.CreateAsync(newEditor);
-            await _unitOfWork.ArticolRepository.SaveAsync();
+            await _unitOfWork.EditoriRepository.CreateAsync(newEditor);
+            await _unitOfWork.EditoriRepository.SaveAsync();
         }
         public async Task<bool> Update(Guid id, EditorResponseDTO newEditor)
         {
-            var editor = await _unitOfWork.ArticolRepository.FindByIdAsync(id);
+            var editor = await _unitOfWork.EditoriRepository.FindByIdAsync(id);
 
             if(editor == null)
             {
@@ -51,10 +46,15 @@ namespace Ziare.Services.EditoriService
         }
         public async Task Delete(Guid id)
         {
-            var editor = await _unitOfWork.ArticolRepository.FindByIdAsync(id);
+            var editor = await _unitOfWork.EditoriRepository.FindByIdAsync(id);
 
-            _unitOfWork.ArticolRepository.Delete(editor);
-            await _unitOfWork.ArticolRepository.SaveAsync();
+            _unitOfWork.EditoriRepository.Delete(editor);
+            await _unitOfWork.EditoriRepository.SaveAsync();
+        }
+
+        public List<NumarEditoriDTO> CountEditori()
+        {
+            return _unitOfWork.EditoriRepository.CountEditori();
         }
     }
 }
