@@ -7,5 +7,7 @@ namespace Ziare.Repositories.ClientiRepository
     {
         Task<Client> FindByEmailAsync(string email);
         Client FindById(Guid id);
+        Task<Client> GetByEmailCuBibliotecaAsync(string email);
+        int GetValoareCont(Guid id);
     }
 }

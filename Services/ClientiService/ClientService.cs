@@ -20,7 +20,6 @@ namespace Ziare.Services.ClientiService
             _mapper = mapper;
             _jwtUtils = jwtUtils;
         }
-
         public async Task<List<Client>> GetAll()
         {
             var clienti = await _unitOfWork.ClientiRepository.GetAll();

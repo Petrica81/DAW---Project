@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ziare.Data;
 using Ziare.Models;
+using Ziare.Models.DTOs.EditorDTOs;
 using Ziare.Repositories.GenericRepository;
 
 namespace Ziare.Repositories.ZiareRepository
